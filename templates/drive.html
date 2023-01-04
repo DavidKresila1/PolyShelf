@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/drive_style.css') }}">
+    <title>PolyShelf</title>
+</head>
+<body>
+    <h1><a href="/drive">PolyShelf</a></h1>
+    <a href="/logout" class="logout">Odhlásiť sa</a>
+    <div id="canvas">
+        <div id="screen">
+            <img src="{{url_for('static', filename='img/back.png') }}" onclick="cd('..')" alt="back" width="3%">
+        
+            <p>Súbory a priečinky:</p>
+            <ul id="folders"></ul>
+            <ul id="files"></ul>
+            <ul id="file_sizes"></ul>
+        </div>
+    </div>
+
+
+    <div class="buttons">
+        <button id="newFile" class="newFile">Pridaj súbor</button>
+        <button id="newFolder" class="newFolder">Nový priečinok</button>
+    </div>
+
+    <div id="myModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          
+          <div id="section2">
+            <form action={{url_for("main.createDirectory")}} method="post">
+                {{ d_form.hidden_tag() }}
+                <p>
+                {{ d_form.directoryName.label }}
+                {{ d_form.directoryName(size=10) }}<br>
+                </p>
+                <p>{{ d_form.submit() }}</p>
+            </form>
+            </div>        
+      
+      </div>
+
+
+    <div id="myModal1" class="modal1">
+
+        <!-- Modal content -->
+        <div class="modal-content1">
+          <span class="close1">&times;</span>
+          <div id="section1">
+            <form action={{ url_for("main.uploadFile") }} method="post" enctype="multipart/form-data">
+                {{ u_form.hidden_tag() }}
+                <p>Choose a file to upload:</p>
+                <p>{{ u_form.file() }}</p>
+                <div float="left">
+                {{ u_form.submit() }}
+                </div>
+            </form>
+            </div>        
+          </div>    
+      </div>
+
+      <script>
+          var modal = document.getElementById("myModal");
+
+          var btn = document.getElementById("newFile");
+
+          var span = document.getElementsByClassName("close")[0];
+
+          btn.onclick = function() {
+            modal.style.display = "block";
+          }
+
+          span.onclick = function() {
+            modal.style.display = "none";
+          }
+
+          window.onclick = function(event) {
+            if (event.target == modal) {
+              modal.style.display = "none";
+            }
+          } 
+        
+          var modal = document.getElementById("myModal1");
+
+          var btn = document.getElementById("newFolder");
+
+          var span = document.getElementsByClassName("close1")[0];
+
+          btn.onclick = function() {
+            modal.style.display = "block";
+          }
+
+          span.onclick = function() {
+            modal.style.display = "none";
+          }
+
+          window.onclick = function(event) {
+            if (event.target == modal) {
+              modal.style.display = "none";
+            }
+          } 
+      </script>
+
+    <script type="text/javascript" src={{ url_for('static', filename="js/main2.js")}}></script>
+</body>
+</html>               

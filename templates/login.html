@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/login.css') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PolyShelf</title>
+</head>
+<body>
+    <h1>PolyShelf</h1>
+    <form method="POST" action="/login">
+        <div class="field">
+            <div class="control">
+                <input class="input is-large" type="email" name="email" placeholder="Email" autofocus="">
+            </div>
+        </div>
+
+        <div class="field">
+            <div class="control">
+                <input class="input is-large" type="password" name="password" placeholder="Heslo">
+            </div>
+        </div>
+        <div class="field">
+            <label class="checkbox">
+                <input type="checkbox">
+                Pamataj si ma
+            </label>
+        </div>
+        <button class="loginButton">Prihlásenie</button>
+    </form>
+</body>
+</html>
